@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Responsiva</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #101010;
+  background-image: url();
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.calculadora {
+  background: #181f1b;
+  padding: 5vw;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px #2a773d ;
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid #00ff41;
+}
+
+#display {
+  width: 100%;
+  height: 4em;
+  background: #000;
+  color: #00ff41;
+  font-size: 2em;
+  text-align: right;
+  padding: 0.5em;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  box-shadow: 0 0 10px #00ff41a0 inset;
+}
+
+.botoes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+}
+
+button {
+  padding: 1em;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 12px;
+  background: #222;
+  color: #00ff41;
+  box-shadow: 0 2px 8px #00ff4120;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, color 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
+  background: #00ff41;
+  color: #181f1b;
+}
+
+.operador {
+  background: #003d1a;
+  color: #00ff41;
+}
+
+.igual {
+  background: #00ff41;
+  color: #181f1b;
+  grid-column: span 2;
+  font-weight: bold;
+}
+
+.limpar {
+  background: #003d1a;
+  color: #00ff41;
+}
+
+.zero {
+  grid-column: span 2;
+}
+
+button:hover {
+  background: #00ff41;
+  color: #181f1b;
+}
+
+@media (max-width: 350px) {
+  button {
+    font-size: 1em;
+    padding: 0.8em;
+  }
+
+  #display {
+    font-size: 1.5em;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <input type="text" id="display" disabled />
+    <div class="botoes">
+      <button onclick="limpar()" class="limpar">C</button>
+      <button onclick="adicionar('(')">(</button>
+      <button onclick="adicionar(')')">)</button>
+      <button onclick="adicionar('/')" class="operador">÷</button>
+
+      <button onclick="adicionar('7')">7</button>
+      <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('9')">9</button>
+      <button onclick="adicionar('*')" class="operador">×</button>
+
+      <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('5')">5</button>
+      <button onclick="adicionar('6')">6</button>
+      <button onclick="adicionar('-')" class="operador">−</button>
+
+      <button onclick="adicionar('1')">1</button>
+      <button onclick="adicionar('2')">2</button>
+      <button onclick="adicionar('3')">3</button>
+      <button onclick="adicionar('+')" class="operador">+</button>
+
+      <button onclick="adicionar('0')" class="zero">0</button>
+      <button onclick="adicionar('.')">.</button>
+      <button onclick="calcular()" class="igual">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function adicionar(valor) {
+      display.value += valor;
+    }
+
+    function limpar() {
+      display.value = '';
+    }
+
+    function calcular() {
+      try {
+        display.value = eval(display.value);
+      } catch (e) {
+        display.value = 'Erro';
+      }
+    }
+  </script>
+</body>
+</html>
+<!--
+  Esta é uma calculadora simples com um design realista. 
+  Ela possui botões para números, operações e um visor para exibir os resultados.
+  O JavaScript é usado para manipular o visor e calcular os resultados.
